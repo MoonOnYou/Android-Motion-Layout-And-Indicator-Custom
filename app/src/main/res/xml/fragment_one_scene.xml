@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@id/end"
+        motion:duration="50000">
+
+
+<!--        dragUp 인가 .. 아님 floatingView 이거 다 적어줘야 되나....-->
+        <OnSwipe
+            motion:dragDirection="dragDown"
+            motion:touchAnchorId="@id/scrollView"
+            motion:moveWhenScrollAtTop="false"/>
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@id/floatingView">
+
+            <PropertySet android:visibility="visible"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/floatingView">
+
+            <PropertySet android:visibility="gone"/>
+
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
+
+
+<!--각 속성 설명 ( 한국어 )-->
+<!--    https://www.charlezz.com/?p=717-->
+
+<!--참고 코드-->
+<!--    1. 스택오버 플로우-->
+<!--    https://stackoverflow.com/questions/57308572/collapsingtoolbarlayout-with-fixed-pinned-toolbar-and-functionality-of-enteralw-->
+<!--    2. 깃헙 2개-->
+<!--    https://github.com/android/views-widgets-samples/blob/master/ConstraintLayoutExamples/motionlayout/src/main/res/xml/scene_25.xml-->
+<!--    https://github.com/android/views-widgets-samples/blob/master/ConstraintLayoutExamples/motionlayout/src/main/res/layout/motion_25_keytrigger.xml-->
