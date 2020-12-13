@@ -4,14 +4,17 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        motion:constraintSetStart="@id/start"
         motion:constraintSetEnd="@id/end"
-        motion:duration="50000">
+        motion:constraintSetStart="@id/start"
+        motion:staggered="0.1"
+        motion:motionInterpolator="linear"
+        motion:duration="1000">
 
-
-<!--        dragUp 인가 .. 아님 floatingView 이거 다 적어줘야 되나....-->
         <OnSwipe
             motion:dragDirection="dragDown"
+            motion:maxVelocity="20"
+            motion:maxAcceleration="20"
+            motion:touchAnchorSide="bottom"
             motion:touchAnchorId="@id/scrollView"
             motion:moveWhenScrollAtTop="false"/>
 
@@ -20,17 +23,17 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint android:id="@id/floatingView">
-
-            <PropertySet android:visibility="visible"/>
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#bdbdbd"/>
         </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
-        <Constraint
-            android:id="@id/floatingView">
-
-            <PropertySet android:visibility="gone"/>
-
+        <Constraint android:id="@id/floatingView">
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="#00bdbdbd"/>
         </Constraint>
     </ConstraintSet>
 
