@@ -4,9 +4,8 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        motion:constraintSetEnd="@id/end"
         motion:constraintSetStart="@id/start"
-        motion:staggered="0.1"
+        motion:constraintSetEnd="@id/end"
         motion:motionInterpolator="linear"
         motion:duration="1000">
 
@@ -15,26 +14,45 @@
             motion:maxVelocity="20"
             motion:maxAcceleration="20"
             motion:touchAnchorSide="bottom"
-            motion:touchAnchorId="@id/scrollView"
-            motion:moveWhenScrollAtTop="false"/>
+            motion:touchAnchorId="@id/scrollView"/>
 
     </Transition>
 
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint android:id="@id/floatingView">
-            <CustomAttribute
-                motion:attributeName="BackgroundColor"
-                motion:customColorValue="#bdbdbd"/>
-        </Constraint>
+        <Constraint android:id="@id/scrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/floatingView"/>
+
+        <Constraint android:id="@id/floatingView"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            motion:layout_constraintTop_toBottomOf="@id/scrollView"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
-        <Constraint android:id="@id/floatingView">
-            <CustomAttribute
-                motion:attributeName="BackgroundColor"
-                motion:customColorValue="#00bdbdbd"/>
-        </Constraint>
+        <Constraint android:id="@id/scrollView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/floatingView"/>
+
+        <Constraint android:id="@id/floatingView"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            motion:layout_constraintTop_toBottomOf="@id/scrollView"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
     </ConstraintSet>
 
 </MotionScene>
